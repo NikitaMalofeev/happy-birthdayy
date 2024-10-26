@@ -1,4 +1,6 @@
 // Import the data to customize and insert them into page
+let giftImagePath = "";
+
 const fetchData = () => {
   fetch("customize.json")
     .then((data) => data.json())
@@ -10,6 +12,8 @@ const fetchData = () => {
             document
               .querySelector(`[data-node-name*="${customData}"]`)
               .setAttribute("src", data[customData]);
+          } else if (customData === "giftJpg") {
+            giftImagePath = data[customData]; // Store gift image path
           } else {
             document.querySelector(`[data-node-name*="${customData}"]`).innerText =
               data[customData];
@@ -129,20 +133,17 @@ const animationTimeline = () => {
     .staggerFrom(".nine p", 1, ideaTextTrans, 1.2)
     .to(".last-smile", 0.5, { rotation: 90 }, "+=1");
 
-  // Restart Animation on click
-  const replayBtn = document.getElementById("replay");
-  replayBtn.addEventListener("click", () => {
-    tl.restart();
-  });
+  // Restart Animation and Show Gift Image on click
+  const replyBtn = document.getElementById("replay");
+  replyBtn.addEventListener("click", () => {
+    // tl.restart();
 
-  // Show Gift on click
-  const outroText = document.getElementById("outroText");
-  outroText.addEventListener("click", () => {
+    // Create a new overlay with the gift image
     const giftOverlay = document.createElement("div");
     giftOverlay.classList.add("gift-overlay");
     giftOverlay.innerHTML = `
       <div class="gift-content">
-        <img src="${data.giftJpg}" alt="Gift" class="gift-image" />
+        <img src="${giftImagePath}" alt="Gift" class="gift-image" />
         <button id="closeGift" class="close-gift-btn">Close</button>
       </div>
     `;
