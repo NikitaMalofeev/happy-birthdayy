@@ -4,7 +4,7 @@
   "description": "An app that let's you say happy birthday to your friend in a nerdy way.",
   "main": "index.js",
   "devDependencies": {
-    "browser-sync": "^2.18.13",
+    "browser-sync": "^2.29.3",
     "run-script-os": "^1.0.2"
   },
   "scripts": {
@@ -28,5 +28,7 @@
     "url": "https://github.com/faahim/happy-birthday/issues"
   },
   "homepage": "https://github.com/faahim/happy-birthday#readme",
-  "dependencies": {}
+  "dependencies": {
+    "g": "^2.0.1"
+  }
 }
